@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snow</title>
+    <style>
+      .snow {
+        font-size: 10px;
+        color: #fff;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body onload="MakeSnow()" bgcolor="#000000">
+    <script>
+      function MakeSnow() {
+        for (let i = 0; i < 200; i++) {
+          let snow = document.createElement('span')
+          snow.className = 'snow'
+          snow.innerText = '*'
+          document.body.appendChild(snow)
+          Fall(snow)
+     
+        }
+      }
+
+      function Fall(obj) {
+        let W = window.innerWidth - obj.offsetWidth
+        let H = window.innerHeight - obj.offsetHeight
+        let posX = Math.random() * W
+        let posY = Math.random() * H
+        let vX = Math.random() * 3 + 1
+        let vY = Math.random() * 3 + 1
+        setInterval(function () {
+          posX += vX
+          posY += vY
+          if (posY > H) {
+            posY = 0
+          }
+          if (posX > W) {
+            posX = 0
+          }
+          obj.style.left = posX + 'px'
+          obj.style.top = posY + 'px'
+        }, 50)
+      }
+    </script>
+  </body>
+</html>
